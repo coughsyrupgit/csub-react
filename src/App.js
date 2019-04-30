@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import 'uikit/dist/css/uikit-core.css'
 import Grid from './components/Grid'
+import { logger } from 'handlebars';
 
 function App() {
   var test = [
@@ -14,6 +15,7 @@ function App() {
           title: "Link 2"
       }
   ]
+
   return (
       <div className="uk-container uk-container-large">
           <h1 className="uk-heading-line uk-margin-top uk-margin-medium-bottom"><span>My Bookmarks</span></h1>
