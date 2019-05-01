@@ -14,7 +14,7 @@ $ yarn install
 $ yarn build
 ```
 
-When the project is succesfully built open Goocle Chrome. Go to Menu -> More Tools -> Extensions. At the top of screen click "Load unpacked extenstion". If there isn't this button check the checkbox "Developer mode" on the top right. Then choose the directory
+When the project is succesfully built open Google Chrome. Go to Menu -> More Tools -> Extensions. At the top of screen click "Load unpacked extenstion". If there is no similar button - tick the checkbox "Developer mode" on the top right. Then choose the directory
 
 ``` <repository root directory>/build ```
 
