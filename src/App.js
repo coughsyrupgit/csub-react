@@ -1,5 +1,7 @@
 import React from 'react'
 import './App.css'
+import UIkit from 'uikit'
+import Icons from 'uikit/dist/js/uikit-icons'
 import 'uikit/dist/css/uikit-core.css'
 import Grid from './components/Grid'
 import SearchForm from './components/SearchForm'
@@ -31,6 +33,10 @@ class App extends React.Component {
             tree : [],
             folders: []
         }
+    }
+
+    componentDidMount(){
+        UIkit.use(Icons);
     }
 
     prepareFolders(tree) {
@@ -72,16 +78,22 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="uk-container uk-container-large">
-                <div className="uk-grid uk-padding uk-padding-remove-left uk-padding-remove-right uk-padding-remove-bottom">
-                    <div className="uk-width-2-3">
-                        <h1 className="uk-heading-bullet"><span>My Bookmarks</span></h1>
-                    </div>
-                    <div className="uk-width-1-3">
-                        <SearchForm resultsCallback={this.updateLinksVisibility.bind(this)} />
+            <div>
+                <div className="uk-background-secondary uk-margin-large-bottom">
+                    <div className="uk-container uk-container-large">
+                        <div className="uk-grid uk-padding-small uk-padding-remove-left uk-padding-remove-right">
+                            <div className="uk-width-2-3">
+                                <h1 className="uk-heading-bullet uk-text-large uk-light"><span>My Bookmarks</span></h1>
+                            </div>
+                            <div className="uk-width-1-3">
+                                <SearchForm resultsCallback={this.updateLinksVisibility.bind(this)} />
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <Grid items={this.state.folders} />
+                <div className="uk-container uk-container-large">
+                    <Grid items={this.state.folders} />
+                </div>
             </div>
         )
     }

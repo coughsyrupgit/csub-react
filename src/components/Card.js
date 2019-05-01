@@ -20,16 +20,13 @@ export default class Card extends React.Component {
             )
         })
 
-        const cardStyle = (this.props.iterator % 2 === 0) ? 'uk-card-default' : 'uk-card-primary';
-        let cardClass = "uk-card " /*+ cardStyle*/ + " uk-card-body";
-
         return (
-            <div className={cardClass}>
+            <div className="uk-card uk-card-secondary uk-card-body">
                 <h2 className="uk-card-title">{this.props.title}</h2>
                 <ul className="uk-list uk-list-striped">
                     {linksItems}
                 </ul>
-            </div>
+        </div>
         )
     }
 }

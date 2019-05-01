@@ -1,3 +1,8 @@
+body, html {
+    height: 100%;
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+}
+
 .fade {
     transition: opacity .2s, visibility .2s, transform .2s;
 }
@@ -7,4 +12,10 @@
     visibility: hidden;
     transform: translateY(-20%);
     position: absolute;
+}
+
+.uk-card-default {
+    border-radius: 8px;
+    background: linear-gradient(-45deg, #f8f8f8, #efefef);
+    box-shadow: 1px 1px 5px rgba(20,20, 20, .3);
 }

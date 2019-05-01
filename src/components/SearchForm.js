@@ -19,8 +19,13 @@ export default class SearchForm extends React.Component {
 
     render() {
         return (
-            <form className="uk-search uk-search-navbar uk-background-muted uk-padding-small">
-                <input className="uk-search-input" type="search" placeholder="Search..." value={this.state.query} onChange={this.onInputChange.bind(this)}/>
+            <form className="uk-search uk-flex uk-flex-middle">
+                <div className="uk-width-auto uk-margin-small-right">
+                    <span data-uk-icon="search"></span>
+                </div>
+                <div className="uk-width-expand">
+                    <input className="uk-search-input uk-background-secondary uk-text-large uk-light" type="search" placeholder="Search..." value={this.state.query} onChange={this.onInputChange.bind(this)}/>
+                </div>
             </form>
         )
     }
