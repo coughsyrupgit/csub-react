@@ -11,24 +11,24 @@ export default class Card extends React.Component {
 
     render () {
         let linksItems = this.props.links.map((link, index) => {
+            let classNames = "fade";
+            classNames += link.isHidden ? ' fade--hidden' : '';
             return (
-                <tr key={index}>
-                    <td>
-                        <Link url={link.url} title={link.title}/>
-                    </td>
-                </tr>
+                <li key={index} className={classNames}>
+                    <Link url={link.url} title={link.title}/>
+                </li>
             )
         })
 
         const cardStyle = (this.props.iterator % 2 === 0) ? 'uk-card-default' : 'uk-card-primary';
-        const cardClass = "uk-card " + cardStyle + " uk-card-body";
+        let cardClass = "uk-card " /*+ cardStyle*/ + " uk-card-body";
 
         return (
             <div className={cardClass}>
                 <h2 className="uk-card-title">{this.props.title}</h2>
-                <table className="uk-table uk-table-striped">
-                    <tbody>{linksItems}</tbody>
-                </table>
+                <ul className="uk-list uk-list-striped">
+                    {linksItems}
+                </ul>
             </div>
         )
     }

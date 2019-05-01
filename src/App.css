@@ -1,0 +1,10 @@
+.fade {
+    transition: opacity .2s, visibility .2s, transform .2s;
+}
+
+.fade--hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20%);
+    position: absolute;
+}

@@ -9,15 +9,20 @@ export default class Grid extends React.Component {
 
     render () {
         let items = this.props.items.map((item, index) => {
+            let classNames = "uk-width-1-3 uk-margin-medium-bottom fade";
+            classNames += item.isHidden ? ' fade--hidden' : '';
+
             return (
-                <li className="uk-width-1-3" key={index}>
+                <li className={classNames} key={index}>
                     <Card title={item.title} links={item.links} iterator={index}/>
                 </li>
             )
         })
 
+        let classNames = "uk-grid"; 
+
         return (
-            <ul className="uk-grid">{items}</ul>
+            <ul className={classNames}>{items}</ul>
         )
     }
 }
