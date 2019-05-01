@@ -1,5 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
+import './Link.css'
 
 export default class Link extends React.Component {
     static propTypes = {
@@ -7,9 +8,18 @@ export default class Link extends React.Component {
         title: PropTypes.string
     }
 
+    getFavicon(url) {
+        return ['chrome://favicon/', url].join('')
+    }
+
     render () {
+        let faviconUrl = this.getFavicon(this.props.url);
+
         return (
-            <a href={ this.props.url }>{ this.props.title || this.props.url }</a>
+            <a href={ this.props.url } className="link">
+                <img src={faviconUrl} alt="" className="link__image"/>
+                <span className="link__title">{ this.props.title || this.props.url }</span>
+            </a>
         )
     }
 }
