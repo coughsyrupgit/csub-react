@@ -61,8 +61,13 @@ class App extends React.Component {
 
         folders.forEach(function (folder) {
             folder.isHidden = true;
+            if (folder.title.match(new RegExp(searchQuery, 'i'))) {
+                folder.isHidden = false
+                folder.links.forEach((link) => link.isHidden = false)
+                return
+            }
             folder.links.forEach(function (link) {
-                if (link.url.match(new RegExp(searchQuery)) || link.title.match(new RegExp(searchQuery)) || !searchQuery || searchQuery.length <= 2) {
+                if (link.url.match(new RegExp(searchQuery, 'i')) || link.title.match(new RegExp(searchQuery, 'i')) || !searchQuery || searchQuery.length <= 2) {
                     folder.isHidden = false;
                     link.isHidden = false;
                 } else {
