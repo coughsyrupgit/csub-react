@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Card from './Card'
+import Card from '../Card'
 
 export default class Grid extends React.Component {
     static propTypes = {
