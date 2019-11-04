@@ -1,10 +1,10 @@
 import React from 'react'
-import './App.css'
+import './app.css'
 import UIkit from 'uikit'
 import Icons from 'uikit/dist/js/uikit-icons'
 import 'uikit/dist/css/uikit-core.css'
-import Grid from './components/Grid'
-import SearchForm from './components/SearchForm'
+import Grid from '../Grid'
+import SearchForm from '../SearchForm'
 import { logger } from 'handlebars';
 
 const bookmarks = window.chrome.bookmarks;
