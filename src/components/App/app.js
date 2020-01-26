@@ -3,8 +3,9 @@ import './app.css'
 import UIkit from 'uikit'
 import Icons from 'uikit/dist/js/uikit-icons'
 import 'uikit/dist/css/uikit-core.css'
-import Grid from '../Grid'
-import SearchForm from '../SearchForm'
+import Grid from '../UI/Grid'
+import SearchForm from '../UI/SearchForm'
+import Bookmark from '../Bookmark'
 import { logger } from 'handlebars';
 
 const bookmarks = window.chrome.bookmarks;
@@ -17,10 +18,7 @@ class Folder {
         this.id = id;
         this.title = title;
         this.isHidden = false;
-        this.links = links.map((elem) => ({
-            ...elem,
-            isHidden: false
-        }))
+        this.links = links.map((elem) => new Bookmark(elem))
     }
 }
 

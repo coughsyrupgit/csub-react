@@ -1,0 +1,24 @@
+.link {
+    position: relative;
+    display: block;
+    padding-left: 24px;
+}
+
+.link__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: auto;
+}
+
+.link__actions {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s ease-in, visibilit .2s ease-in;
+}
+
+.link__container:hover .link__actions {
+    opacity: 1;
+    visibility: visible;
+}

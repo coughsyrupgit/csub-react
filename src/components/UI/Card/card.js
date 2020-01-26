@@ -11,11 +11,11 @@ export default class Card extends React.Component {
 
     render () {
         let linksItems = this.props.links.map((link, index) => {
-            let classNames = "fade";
+            let classNames = "link__container fade uk-position-relative";
             classNames += link.isHidden ? ' fade--hidden' : '';
             return (
                 <li key={index} className={classNames}>
-                    <Link url={link.url} title={link.title}/>
+                    <Link url={link.url} title={link.title} bookmark={link}/>
                 </li>
             )
         })
@@ -26,7 +26,7 @@ export default class Card extends React.Component {
                 <ul className="uk-list uk-list-striped">
                     {linksItems}
                 </ul>
-        </div>
+            </div>
         )
     }
 }
