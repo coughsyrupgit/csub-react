@@ -10,23 +10,26 @@ import Tree from '../Tree';
 class App extends React.Component {
     constructor (props) {
         super(props);
-        const tree = new Tree();
+        const tree = new Tree({
+            updateCallback: this.onTreeUpdate.bind(this)
+        });
 
         this.state = {
+            tree: tree,
             folders: []
         }
 
-        tree.update().then(tree => {
-            this.setState({
-                folders: tree.folders
-            })
-
-            return tree
-        })
+        tree.update()
     }
 
     componentDidMount(){
         UIkit.use(Icons);
+    }
+
+    onTreeUpdate({folders}) {
+        this.setState({
+            folders: folders
+        })
     }
 
     updateLinksVisibility(searchQuery) {
@@ -70,7 +73,7 @@ class App extends React.Component {
                     </div>
                 </div>
                 <div className="uk-container uk-container-large">
-                    <Grid items={this.state.folders} />
+                    <Grid items={this.state.folders} tree={this.state.tree}/>
                 </div>
             </div>
         )

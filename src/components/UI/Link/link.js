@@ -9,13 +9,20 @@ export default class Link extends React.Component {
         entity: PropTypes.object
     }
 
+    removeBookmark() {
+        const bookmark = this.props.bookmark;
+        const tree = this.props.tree;
+
+        bookmark.remove();
+        tree.update();
+    }
+
     getFavicon(url) {
         return ['chrome://favicon/', url].join('')
     }
 
     render () {
         let faviconUrl = this.getFavicon(this.props.url);
-        const bookmark = this.props.bookmark;
 
         return (
             <div>
@@ -24,7 +31,7 @@ export default class Link extends React.Component {
                     <span className="link__title">{ this.props.title || this.props.url }</span>
                 </a>
                 <div className="uk-position-right uk-background-primary uk-flex uk-flex-right uk-flex-middle link__actions">
-                    <button type="button" className="uk-icon uk-padding-small link__remove" uk-icon="close" onClick={bookmark.remove.bind(bookmark)}></button>
+                    <button type="button" className="uk-icon uk-padding-small link__remove" uk-icon="close" onClick={this.removeBookmark.bind(this)}></button>
                 </div>
             </div>
         )

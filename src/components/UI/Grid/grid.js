@@ -14,7 +14,7 @@ export default class Grid extends React.Component {
 
             return (
                 <li className={classNames} key={index}>
-                    <Card title={item.title} links={item.links} iterator={index}/>
+                    <Card title={item.title} links={item.links} iterator={index} tree={this.props.tree}/>
                 </li>
             )
         })

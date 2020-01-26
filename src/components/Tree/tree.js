@@ -3,13 +3,10 @@ import Folder from '../Folder'
 const bookmarks = window.chrome.bookmarks;
 
 export default class Tree {
-    constructor(data) {
-        this.data = data || [];
+    constructor(props) {
+        this.data = [];
         this.folders = [];
-
-        if (!data) {
-            this.update();
-        }
+        this.onUpdate = props.updateCallback || null;
     }
 
     update() {
@@ -20,6 +17,11 @@ export default class Tree {
                 self.data = tree;
                 self.folders = [];
                 self._extractFolders(tree);
+
+                if (typeof self.onUpdate == 'function') {
+                    self.onUpdate(self)
+                }
+
                 resolve(self);
             });
         })

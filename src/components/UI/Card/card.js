@@ -15,7 +15,7 @@ export default class Card extends React.Component {
             classNames += link.isHidden ? ' fade--hidden' : '';
             return (
                 <li key={index} className={classNames}>
-                    <Link url={link.url} title={link.title} bookmark={link}/>
+                    <Link url={link.url} title={link.title} bookmark={link} tree={this.props.tree}/>
                 </li>
             )
         })
