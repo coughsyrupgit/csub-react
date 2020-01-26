@@ -31,6 +31,7 @@ export default class Link extends React.Component {
                     <span className="link__title">{ this.props.title || this.props.url }</span>
                 </a>
                 <div className="uk-position-right uk-background-primary uk-flex uk-flex-right uk-flex-middle link__actions">
+                    <button type="button" className="uk-icon uk-padding-small link__remove" uk-icon="pencil"></button>
                     <button type="button" className="uk-icon uk-padding-small link__remove" uk-icon="close" onClick={this.removeBookmark.bind(this)}></button>
                 </div>
             </div>

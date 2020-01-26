@@ -5,7 +5,8 @@ import Icons from 'uikit/dist/js/uikit-icons'
 import 'uikit/dist/css/uikit-core.css'
 import Grid from '../UI/Grid'
 import SearchForm from '../UI/SearchForm'
-import Tree from '../Tree';
+import Tree from '../Tree'
+import Modal from '../UI/Modal'
 
 class App extends React.Component {
     constructor (props) {
@@ -75,6 +76,7 @@ class App extends React.Component {
                 <div className="uk-container uk-container-large">
                     <Grid items={this.state.folders} tree={this.state.tree}/>
                 </div>
+                <Modal />
             </div>
         )
     }
