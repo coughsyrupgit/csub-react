@@ -9,6 +9,10 @@ export default class Bookmark {
     }
 
     remove() {
-        bookmarks.remove(this.id)
+        let confirmed = window.confirm("Are you sure you want to remove the bookmark?");
+
+        if (confirmed) {
+            bookmarks.remove(this.id)
+        }
     }
 }
