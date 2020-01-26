@@ -5,51 +5,28 @@ import Icons from 'uikit/dist/js/uikit-icons'
 import 'uikit/dist/css/uikit-core.css'
 import Grid from '../UI/Grid'
 import SearchForm from '../UI/SearchForm'
-import Bookmark from '../Bookmark'
-import { logger } from 'handlebars';
-
-const bookmarks = window.chrome.bookmarks;
-
-class Folder {
-    constructor(treeNode) {
-        const links = treeNode.children.filter(item => !item.children);
-        const {id, title} = treeNode;
-
-        this.id = id;
-        this.title = title;
-        this.isHidden = false;
-        this.links = links.map((elem) => new Bookmark(elem))
-    }
-}
+import Tree from '../Tree';
 
 class App extends React.Component {
     constructor (props) {
         super(props);
-        bookmarks.getTree(this.prepareFolders.bind(this));
+        const tree = new Tree();
 
         this.state = {
-            tree : [],
             folders: []
         }
+
+        tree.update().then(tree => {
+            this.setState({
+                folders: tree.folders
+            })
+
+            return tree
+        })
     }
 
     componentDidMount(){
         UIkit.use(Icons);
-    }
-
-    prepareFolders(tree) {
-        tree.forEach((subtree) => {
-            if (subtree.children) {
-                if (subtree.children.filter((item) => !item.children).length) {
-                    let folders = [...this.state.folders];
-                    folders.push(new Folder(subtree));
-                    this.setState({
-                        folders: folders
-                    })
-                }
-                this.prepareFolders(subtree.children)
-            }
-        })
     }
 
     updateLinksVisibility(searchQuery) {
