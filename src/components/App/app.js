@@ -9,16 +9,16 @@ import { logger } from 'handlebars';
 
 const bookmarks = window.chrome.bookmarks;
 
-const FolderObject = function (treeNode) {
-    let links = treeNode.children.filter(function (item) {
-        return !item.children
-    });
+class Folder {
+    constructor(treeNode) {
+        const links = treeNode.children.filter(item => !item.children);
+        const {id, title} = treeNode;
 
-    return {
-        id: treeNode.id,
-        title: treeNode.title,
-        isHidden: false,
-        links: links.map((elem) => Object.assign({}, elem, {
+        this.id = id;
+        this.title = title;
+        this.iShidden = false;
+        this.links = links.map((elem) => ({
+            ...elem,
             isHidden: false
         }))
     }
@@ -45,8 +45,8 @@ class App extends React.Component {
         tree.forEach((subtree) => {
             if (subtree.children) {
                 if (subtree.children.filter((item) => !item.children).length) {
-                    let folders = [].concat(self.state.folders);
-                    folders.push(new FolderObject(subtree));
+                    let folders = [...self.state.folders];
+                    folders.push(new Folder(subtree));
                     self.setState({
                         folders: folders
                     })
@@ -57,7 +57,7 @@ class App extends React.Component {
     }
 
     updateLinksVisibility(searchQuery) {
-        let folders = [].concat(this.state.folders);
+        let folders = [...this.state.folders];
 
         folders.forEach(function (folder) {
             folder.isHidden = true;
