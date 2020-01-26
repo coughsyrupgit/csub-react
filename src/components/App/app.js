@@ -16,7 +16,7 @@ class Folder {
 
         this.id = id;
         this.title = title;
-        this.iShidden = false;
+        this.isHidden = false;
         this.links = links.map((elem) => ({
             ...elem,
             isHidden: false
@@ -40,18 +40,16 @@ class App extends React.Component {
     }
 
     prepareFolders(tree) {
-        var self = this;
-
         tree.forEach((subtree) => {
             if (subtree.children) {
                 if (subtree.children.filter((item) => !item.children).length) {
-                    let folders = [...self.state.folders];
+                    let folders = [...this.state.folders];
                     folders.push(new Folder(subtree));
-                    self.setState({
+                    this.setState({
                         folders: folders
                     })
                 }
-                self.prepareFolders(subtree.children)
+                this.prepareFolders(subtree.children)
             }
         })
     }
