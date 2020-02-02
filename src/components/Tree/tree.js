@@ -2,6 +2,18 @@ import Folder from '../Folder'
 
 const bookmarks = window.chrome.bookmarks;
 
+const hasNodeLeaves = tree => tree.children.filter((item) => !item.children).length;
+
+const extractFoldersFromNode = (folders, node) => {
+    if (node.children) {
+        if (hasNodeLeaves(node)) {
+            folders.push(new Folder(node));
+        }
+        return node.children.reduce(extractFoldersFromNode, folders)
+    }
+    return folders;
+}
+
 export default class Tree {
     constructor(props) {
         this.data = [];
@@ -10,31 +22,24 @@ export default class Tree {
     }
 
     update() {
-        var self = this;
-
-        return new Promise(function (resolve) {
-            bookmarks.getTree(function (tree) {
-                self.data = tree;
-                self.folders = [];
-                self._extractFolders(tree);
-
-                if (typeof self.onUpdate == 'function') {
-                    self.onUpdate(self)
-                }
-
-                resolve(self);
+        return new Promise((resolve) => {
+            bookmarks.getTree((tree) => {
+                this._setData(tree);
+                resolve(this);
             });
         })
     }
 
+    _setData(data) {
+        this.data = data;
+        this.folders = this._extractFolders(data);
+
+        if (typeof this.onUpdate == 'function') {
+            this.onUpdate(this)
+        }
+    }
+
     _extractFolders(tree) {
-        tree.forEach((subtree) => {
-            if (subtree.children) {
-                if (subtree.children.filter((item) => !item.children).length) {
-                    this.folders.push(new Folder(subtree));
-                }
-                this._extractFolders(subtree.children)
-            }
-        })
+        return tree.reduce(extractFoldersFromNode, []);
     }
 }
