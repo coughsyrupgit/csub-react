@@ -24,7 +24,7 @@ export default class ConfigurationForm extends Modal {
             fieldsArray.push({
                 ...fields[fieldKey],
                 id: fieldKey,
-                value: config[fieldKey] || fields[fieldKey].defaultValue
+                value: config.hasOwnProperty(fieldKey) ? config[fieldKey] : fields[fieldKey].defaultValue
             })
             return fieldsArray;
         }, [])
@@ -66,11 +66,7 @@ export default class ConfigurationForm extends Modal {
     onFormSubmit(evt) {
         evt.preventDefault();
 
-        this.config.set(this.state.changedData).then(result => {
-            console.log('Config successfully saved', result)
-            this.config.get().then(result => console.log('new config', result))
-            new Storage().get().then(data => console.log('full storage', data))
-        })
+        this.config.set(this.state.changedData).then(result => console.log('Config successfully saved', result))
     }
 
     render() {

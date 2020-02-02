@@ -4,33 +4,32 @@ const defaults = {}
 
 export default class Storage {
     constructor(defaultData, chapter) {
-        this.data = {};
         this.chapter = chapter;
 
-        if (chapter) {
-            this.data[chapter] = defaultData || defaults
-        } else {
-            this.data = defaultData || defaults
-        }
+        this.data = chapter ? {
+            [chapter]: defaultData || defaults
+        } : defaultData || defaults
 
-        this.get(this.data).then(data => this.data = data)
+        this.get().then(data => chapter ? (this.data[chapter] = data) : (this.data = data))
     }
 
-    get(defaultData) {
-        if (!defaultData) defaultData = this.data;
-
+    get() {
         return new Promise(resolve => {
-            storage.sync.get(defaultData, data => resolve(this.chapter ? data[this.chapter] : data))
+            storage.sync.get(null, data => resolve(this.chapter ? data[this.chapter] : data))
         })
     }
 
     set(data) {
         return new Promise((resolve, reject) => {
-            if (!data) reject(new Error ('No data is provided to set'))
-            if (this.chapter) {
-                data = this.data[this.chapter] = {...data};
+            if (!data || !Object.keys(data).length) {
+                reject(new Error ('No data is provided to set'))
             }
-            storage.sync.set(data, result => resolve(result))
+            data = this.chapter ? {
+                ...this.data,
+                [this.chapter]: data
+            } : data;
+
+            storage.sync.clear( () => storage.sync.set(data, result => resolve(result)))
         })
     }
 }
