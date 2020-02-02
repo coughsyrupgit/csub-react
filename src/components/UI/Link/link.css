@@ -18,6 +18,10 @@
     transition: opacity .2s ease-in, visibilit .2s ease-in;
 }
 
+.link__container {
+    position: relative;
+}
+
 .link__container:hover .link__actions {
     opacity: 1;
     visibility: visible;

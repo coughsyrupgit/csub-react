@@ -7,7 +7,6 @@ export default class Folder {
 
         this.id = id;
         this.title = title;
-        this.isHidden = false;
         this.links = links.map((elem) => new Bookmark(elem))
     }
 }

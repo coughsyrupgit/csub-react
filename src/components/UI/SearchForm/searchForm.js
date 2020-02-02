@@ -13,7 +13,7 @@ export default class SearchForm extends React.Component {
         this.setState({
             query: event.target.value
         }, function () {
-            this.props.resultsCallback(this.state.query)
+            this.props.searchCallback(this.state.query)
         }.bind(this))
     }
 

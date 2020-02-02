@@ -11,8 +11,8 @@ export default class Card extends React.Component {
 
     render () {
         let linksItems = this.props.links.map((link, index) => {
-            let classNames = "link__container fade uk-position-relative";
-            classNames += link.isHidden ? ' fade--hidden' : '';
+            let classNames = "link__container fade";
+            
             return (
                 <li key={index} className={classNames}>
                     <Link url={link.url} title={link.title} bookmark={link} tree={this.props.tree}/>

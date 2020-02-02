@@ -4,6 +4,7 @@ import UIkit from 'uikit'
 import Icons from 'uikit/dist/js/uikit-icons'
 import 'uikit/dist/css/uikit-core.css'
 import Grid from '../UI/Grid'
+import search from '../Search'
 import SearchForm from '../UI/SearchForm'
 import Tree from '../Tree';
 
@@ -32,28 +33,9 @@ class App extends React.Component {
         })
     }
 
-    updateLinksVisibility(searchQuery) {
-        let folders = [...this.state.folders];
-
-        folders.forEach(function (folder) {
-            folder.isHidden = true;
-            if (folder.title.match(new RegExp(searchQuery, 'i'))) {
-                folder.isHidden = false
-                folder.links.forEach((link) => link.isHidden = false)
-                return
-            }
-            folder.links.forEach(function (link) {
-                if (link.url.match(new RegExp(searchQuery, 'i')) || link.title.match(new RegExp(searchQuery, 'i')) || !searchQuery || searchQuery.length <= 2) {
-                    folder.isHidden = false;
-                    link.isHidden = false;
-                } else {
-                    link.isHidden = true;
-                }
-            })
-        })
-
+    onSearch(searchQuery) {
         this.setState({
-            folders: folders
+            folders: search.getResults(this.state.tree.folders, searchQuery)
         })
     }
 
@@ -67,7 +49,7 @@ class App extends React.Component {
                                 <h1 className="uk-heading-bullet uk-text-large uk-light"><span>My Bookmarks</span></h1>
                             </div>
                             <div className="uk-width-1-3">
-                                <SearchForm resultsCallback={this.updateLinksVisibility.bind(this)} />
+                                <SearchForm searchCallback={this.onSearch.bind(this)} />
                             </div>
                         </div>
                     </div>
