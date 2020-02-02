@@ -17,16 +17,24 @@ class App extends React.Component {
             updateCallback: this.onTreeUpdate.bind(this)
         });
 
+        this.config = new Configuration();
+
         this.state = {
             tree: tree,
-            folders: []
+            folders: [],
+            config: {}
         }
 
         tree.update()
+        this.updateConfig();
     }
 
     componentDidMount(){
         UIkit.use(Icons);
+    }
+
+    updateConfig() {
+        this.config.get().then(data => this.setState({config: data}))
     }
 
     onTreeUpdate({folders}) {
@@ -70,7 +78,7 @@ class App extends React.Component {
                 <div className="uk-container uk-container-large">
                     <Grid items={this.state.folders} tree={this.state.tree}/>
                 </div>
-                <ConfigurationForm id="configForm" title="Settings" />
+                <ConfigurationForm id="configForm" title="Settings" config={this.state.config} onConfigSave={this.updateConfig.bind(this)}/>
             </div>
         )
     }

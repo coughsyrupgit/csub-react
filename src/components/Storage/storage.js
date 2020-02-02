@@ -32,4 +32,8 @@ export default class Storage {
             storage.sync.clear( () => storage.sync.set(data, result => resolve(result)))
         })
     }
+
+    addListener(handler) {
+        storage.onChanged.addListener(handler)
+    }
 }

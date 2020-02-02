@@ -1,6 +1,5 @@
 import React from 'react'
 import Modal from '../Modal'
-import Storage from '../../Storage'
 import Configuration, { fields } from '../../Configuration'
 import { InputText, Checkbox } from '../FormFields'
 
@@ -66,14 +65,21 @@ export default class ConfigurationForm extends Modal {
     onFormSubmit(evt) {
         evt.preventDefault();
 
-        this.config.set(this.state.changedData).then(result => console.log('Config successfully saved', result))
+        this.config.set(this.state.changedData).then(() => {
+            if (this.props.onConfigSave) {
+                this.props.onConfigSave()
+            }
+        })
+
+        this.close();
     }
 
     render() {
+        const additionalClassNames = this.props.config.dark_mode ? 'uk-background-secondary uk-light' : '';
         return (
             <div id={this.props.id} uk-modal>
-                <div class="uk-modal-dialog uk-modal-body">
-                    <h2 class="uk-modal-title">{this.props.title}</h2>
+                <div className={['uk-modal-dialog uk-modal-body', additionalClassNames].join(' ')}>
+                    <h2 className="uk-modal-title">{this.props.title}</h2>
                     <form action="#" onSubmit={this.onFormSubmit.bind(this)}>
                         {this.getRenderedFieldset(this.state.fieldset)}
                         <p class="uk-text-right">
