@@ -1,6 +1,11 @@
 # CS useful Bookmarks
 
-This project is Chrome extension which shows user's GChrome bookmarks in a start tab as a bunch of cards.
+This project is a Google Chrome extension which shows user's bookmarks in a start tab as a bunch of cards.
+
+Additional features:
+
++ Search though the bookmarks and folders
++ Remove bookmarks
 
 ![Screenshot of CS Useful Bookmarks](./public/preview.png)
 
@@ -27,5 +32,5 @@ The extenstion will appear in the new Chrome tab.
 + Add extension configuration (configure appearance, bookmarks structure and order)
 + Drag and drop folders to reorder
 + Drag and drop bookmarks to move between folders
-+ Search: open bookmark on submit, if there is only one result
++ <del>Search: open bookmark on submit, if there is only one result</del>
 
