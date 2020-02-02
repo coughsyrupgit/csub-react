@@ -1,6 +1,6 @@
 const doesItemMatch = (searchExp, item) => item.title.match(searchExp) || (item.url && item.url.match(searchExp));
 
-const filterByQuery = (searchExp, items) => items.filter(doesItemMatch.bind(this, searchExp));
+const getMatchedItems = (searchExp, items) => items.filter(doesItemMatch.bind(this, searchExp));
 
 export default {
     getResults(folders, searchQuery) {
@@ -8,7 +8,7 @@ export default {
 
         return folders.reduce((result, folder) => {
             const doesFolderMatch = doesItemMatch(queryExp, folder);
-            const matchedLinks = filterByQuery(queryExp, folder.links);
+            const matchedLinks = getMatchedItems(queryExp, folder.links);
 
             if (matchedLinks.length) {
                 result.push({...folder, links: matchedLinks})

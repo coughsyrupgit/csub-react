@@ -39,6 +39,16 @@ class App extends React.Component {
         })
     }
 
+    onSearchSubmit(evt) {
+        evt.preventDefault();
+        
+        if ((this.state.folders.length == 1) && (this.state.folders[0].links.length == 1)) {
+            window.location = this.state.folders[0].links[0].url
+        }
+
+        return false
+    }
+
     render() {
         return (
             <div>
@@ -49,7 +59,7 @@ class App extends React.Component {
                                 <h1 className="uk-heading-bullet uk-text-large uk-light"><span>My Bookmarks</span></h1>
                             </div>
                             <div className="uk-width-1-3">
-                                <SearchForm searchCallback={this.onSearch.bind(this)} />
+                                <SearchForm searchCallback={this.onSearch.bind(this)} submitCallback={this.onSearchSubmit.bind(this)} />
                             </div>
                         </div>
                     </div>
