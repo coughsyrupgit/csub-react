@@ -1,6 +1,8 @@
 import React from 'react'
 import Modal from '../Modal'
-import Configuration, { fields } from '../../Configuration';
+import Storage from '../../Storage'
+import Configuration, { fields } from '../../Configuration'
+import { InputText, Checkbox } from '../FormFields'
 
 export default class ConfigurationForm extends Modal {
     constructor(props) {
@@ -8,10 +10,11 @@ export default class ConfigurationForm extends Modal {
         this.config = new Configuration();
 
         this.state = {
-            fieldset: []
+            fieldset: [],
+            changedData: {}
         }
 
-        this.config.getData().then(data => this.setState({
+        this.config.get().then(data => this.setState({
             fieldset: this.getFieldsWithValues(fields, data)
         }))
     }
@@ -20,6 +23,7 @@ export default class ConfigurationForm extends Modal {
         const fieldset = Object.keys(fields).reduce((fieldsArray, fieldKey) => {
             fieldsArray.push({
                 ...fields[fieldKey],
+                id: fieldKey,
                 value: config[fieldKey] || fields[fieldKey].defaultValue
             })
             return fieldsArray;
@@ -35,19 +39,12 @@ export default class ConfigurationForm extends Modal {
             switch (field.type) {
                 case "checkbox" :
                     renderedFieldset.push(
-                       <div className="uk-margin">
-                            <label><input className="uk-checkbox" type="checkbox" defaultChecked={field.value} /><span class="uk-margin-left">{field.label}</span></label>
-                       </div>
+                       <Checkbox {...field} onChangeCallback={this.onFormChange.bind(this)} />
                     )
                     break;
                 default: 
                     renderedFieldset.push(
-                        <div className="uk-margin">
-                            <label className="uk-form-label" for="form-stacked-text">{field.label}</label>
-                            <div className="uk-form-controls">
-                                <input className="uk-input" type="text" placeholder={field.placeholder} />
-                            </div>
-                        </div>
+                        <InputText {...field} onChangeCallback={this.onFormChange.bind(this)}/>
                     )
                     break;
             }
@@ -55,17 +52,39 @@ export default class ConfigurationForm extends Modal {
         }, [])
     }
 
+    onFormChange(evt) {
+        const optionId = evt.target.name;
+        const updatedState = {};
+
+        updatedState[optionId] = (evt.target.type == 'checkbox') ? evt.target.checked : evt.target.value
+
+        this.setState({
+            changedData: updatedState
+        })
+    }
+
+    onFormSubmit(evt) {
+        evt.preventDefault();
+
+        this.config.set(this.state.changedData).then(result => {
+            console.log('Config successfully saved', result)
+            this.config.get().then(result => console.log('new config', result))
+            new Storage().get().then(data => console.log('full storage', data))
+        })
+    }
+
     render() {
         return (
             <div id={this.props.id} uk-modal>
                 <div class="uk-modal-dialog uk-modal-body">
                     <h2 class="uk-modal-title">{this.props.title}</h2>
-                    <form action="#">
+                    <form action="#" onSubmit={this.onFormSubmit.bind(this)}>
                         {this.getRenderedFieldset(this.state.fieldset)}
+                        <p class="uk-text-right">
+                            <button type="submit" className="uk-button uk-button-primary uk-margin-right">Save</button>
+                            <button className="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                        </p>
                     </form>
-                    <p class="uk-text-right">
-                        <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                    </p>
                 </div>
             </div>
         )

@@ -10,6 +10,6 @@ const defaults = {
 
 export default class Configuration extends Storage {
     constructor(defaultData) {
-        super(defaultData || defaults);
+        super(defaultData || defaults, 'config');
     }
 }
