@@ -1,5 +1,7 @@
 .masonry-grid {
     column-count: 3;
+    margin-left: -30px;
+    padding-left: 0;
 }
 
 .masonry-grid > * {
@@ -16,6 +18,11 @@
   }
 
 @media (min-width: 1200px) {
+
+    .masonry-grid {
+        margin-left: -40px;
+    }
+
     .masonry-grid > * {
         padding-left: 40px;
     }
