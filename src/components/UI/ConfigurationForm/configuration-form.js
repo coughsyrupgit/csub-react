@@ -3,6 +3,15 @@ import Modal from '../Modal'
 import Configuration, { fields } from '../../Configuration'
 import { InputText, Checkbox } from '../FormFields'
 
+const getFieldsWithValues = (fields, config) => Object.keys(fields).reduce((fieldsArray, fieldKey) => {
+        fieldsArray.push({
+            ...fields[fieldKey],
+            id: fieldKey,
+            value: config.hasOwnProperty(fieldKey) ? config[fieldKey] : fields[fieldKey].defaultValue
+        })
+        return fieldsArray;
+    }, [])
+
 export default class ConfigurationForm extends Modal {
     constructor(props) {
         super(props);
@@ -14,21 +23,8 @@ export default class ConfigurationForm extends Modal {
         }
 
         this.config.get().then(data => this.setState({
-            fieldset: this.getFieldsWithValues(fields, data)
+            fieldset: getFieldsWithValues(fields, data)
         }))
-    }
-
-    getFieldsWithValues(fields, config) {
-        const fieldset = Object.keys(fields).reduce((fieldsArray, fieldKey) => {
-            fieldsArray.push({
-                ...fields[fieldKey],
-                id: fieldKey,
-                value: config.hasOwnProperty(fieldKey) ? config[fieldKey] : fields[fieldKey].defaultValue
-            })
-            return fieldsArray;
-        }, [])
-
-        return fieldset;
     }
 
     getRenderedFieldset(fieldset) {
@@ -76,6 +72,7 @@ export default class ConfigurationForm extends Modal {
 
     render() {
         const additionalClassNames = this.props.config.dark_mode ? 'uk-background-secondary uk-light' : '';
+        
         return (
             <div id={this.props.id} uk-modal>
                 <div className={['uk-modal-dialog uk-modal-body', additionalClassNames].join(' ')}>
