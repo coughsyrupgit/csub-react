@@ -10,12 +10,12 @@ export default class Storage {
             [chapter]: defaultData || defaults
         } : defaultData || defaults
 
-        this.get().then(data => chapter ? (this.data[chapter] = data) : (this.data = data))
+        this.get(this.data).then(data => chapter ? (this.data[chapter] = data) : (this.data = data))
     }
 
     get() {
         return new Promise(resolve => {
-            storage.sync.get(null, data => resolve(this.chapter ? data[this.chapter] : data))
+            storage.sync.get(this.data, data => resolve(this.chapter ? data[this.chapter] : data))
         })
     }
 
