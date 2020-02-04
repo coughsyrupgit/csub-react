@@ -1,32 +1,25 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Link from '../Link'
 
-export default class Card extends React.Component {
-    static propTypes = {
-        title: PropTypes.string,
-        links: PropTypes.array,
-        iterator: PropTypes.number
-    }
-
-    render () {
-        let linksItems = this.props.links.map((link, index) => {
-            let classNames = "link__container fade";
-            
-            return (
-                <li key={index} className={classNames}>
-                    <Link url={link.url} title={link.title} bookmark={link} tree={this.props.tree}/>
-                </li>
-            )
-        })
-
+const Card = ({links, title, tree}) => {
+    let linksItems = links.map((link, index) => {
+        let classNames = "link__container fade";
+        
         return (
-            <div className="uk-card uk-card-secondary uk-card-body">
-                <h2 className="uk-card-title">{this.props.title}</h2>
-                <ul className="uk-list uk-list-striped">
-                    {linksItems}
-                </ul>
-            </div>
+            <li key={index} className={classNames}>
+                <Link url={link.url} title={link.title} bookmark={link} tree={tree}/>
+            </li>
         )
-    }
+    })
+
+    return (
+        <div className="uk-card uk-card-secondary uk-card-body">
+            <h2 className="uk-card-title">{title}</h2>
+            <ul className="uk-list uk-list-striped">
+                {linksItems}
+            </ul>
+        </div>
+    )
 }
+
+export default Card
