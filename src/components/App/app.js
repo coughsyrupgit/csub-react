@@ -4,10 +4,11 @@ import UIkit from 'uikit'
 import Icons from 'uikit/dist/js/uikit-icons'
 import 'uikit/dist/css/uikit-core.css'
 import Grid from '../UI/Grid'
+import Header from '../UI/Header'
 import search from '../Search'
 import SearchForm from '../UI/SearchForm'
 import Tree from '../Tree'
-import ConfigurationForm from '../UI/ConfigurationForm'
+import ConfigurationForm, {ConfigToggle} from '../UI/ConfigurationForm'
 import Configuration from '../Configuration'
 
 class App extends React.Component {
@@ -62,19 +63,10 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <div className="uk-background-secondary uk-margin-large-bottom">
-                    <div className="uk-container uk-container-large">
-                        <div className="uk-grid uk-padding-small uk-padding-remove-left uk-padding-remove-right">
-                            <div className="uk-width-2-3">
-                                <h1 className="uk-heading-bullet uk-text-large uk-light"><span>My Bookmarks</span></h1>
-                            </div>
-                            <div className="uk-width-1-3 uk-flex uk-flex-middle uk-flex-between">
-                                <SearchForm searchCallback={this.onSearch.bind(this)} submitCallback={this.onSearchSubmit.bind(this)} />
-                                <button type="button" className="uk-icon-settings" uk-icon="settings" uk-toggle="target: #configForm"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <Header title="My Bookmarks">
+                    <SearchForm searchCallback={this.onSearch.bind(this)} submitCallback={this.onSearchSubmit.bind(this)} />
+                    <ConfigToggle />
+                </Header>
                 <div className="uk-container uk-container-large">
                     <Grid items={this.state.folders} tree={this.state.tree}/>
                 </div>

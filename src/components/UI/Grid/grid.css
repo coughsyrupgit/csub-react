@@ -1,0 +1,22 @@
+.masonry-grid {
+    column-count: 3;
+}
+
+.masonry-grid > * {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    padding-left: 30px;
+}
+
+.masonry-grid:after {
+    content: '';
+    width: 100%;
+    display: inline-block;
+  }
+
+@media (min-width: 1200px) {
+    .masonry-grid > * {
+        padding-left: 40px;
+    }
+}
