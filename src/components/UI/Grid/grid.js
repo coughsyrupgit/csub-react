@@ -1,10 +1,9 @@
 import React from 'react'
-import './grid.css'
 import Card from '../Card'
 
 const Grid = ({items, tree, config}) => {
     const elems = items.map((item, index) => {
-        let classNames = "uk-width-1-3 uk-margin-medium-bottom";
+        let classNames = "uk-width-1-1 uk-width-1-2@s uk-width-1-3@m uk-margin-medium-bottom";
         classNames += item.isHidden ? ' fade--hidden' : '';
 
         return (
@@ -15,7 +14,7 @@ const Grid = ({items, tree, config}) => {
     })
 
     return (
-        <ul className="masonry-grid">{elems}</ul>
+        <ul className="" data-uk-grid="masonry: true">{elems}</ul>
     )
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import './global-background.css';
 
 const getBackgroundStyles = (config) => {
     return config.background_config ? {
