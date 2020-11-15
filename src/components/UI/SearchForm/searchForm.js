@@ -24,7 +24,7 @@ export default class SearchForm extends React.Component {
                     <span data-uk-icon="search"></span>
                 </div>
                 <div className="uk-width-expand">
-                    <input className="uk-search-input uk-background-secondary uk-text-large uk-light" type="search" placeholder="Search..." value={this.state.query} onChange={this.onInputChange.bind(this)} />
+                    <input className="uk-search-input uk-text-large" type="search" placeholder="Search..." value={this.state.query} onChange={this.onInputChange.bind(this)} />
                 </div>
             </form>
         )

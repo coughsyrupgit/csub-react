@@ -1,24 +1,7 @@
 import React from 'react';
+import Abstract from './abstract';
 
-export default class InputText extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            value: props.value || ''
-        }
-    }
-
-    onChange(evt) {
-        this.setState({
-            value: evt.target.value
-        })
-
-        if (this.props.onChangeCallback) {
-            this.props.onChangeCallback(evt)
-        }
-    }
-
+export default class InputText extends Abstract {
     render() {
         return (
             <div className="uk-margin">

@@ -1,6 +1,14 @@
 body, html {
     height: 100%;
-    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+}
+
+.global-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
 }
 
 .fade {
@@ -16,6 +24,10 @@ body, html {
 
 .uk-card-default {
     border-radius: 8px;
-    background: linear-gradient(-45deg, #f8f8f8, #efefef);
+    /*background: linear-gradient(-45deg, #f8f8f8, #efefef);*/
     box-shadow: 1px 1px 5px rgba(20,20, 20, .3);
+}
+
+.uk-search-input {
+    background: transparent;
 }

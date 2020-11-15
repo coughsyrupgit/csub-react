@@ -10,6 +10,7 @@ import SearchForm from '../UI/SearchForm'
 import Tree from '../Tree'
 import ConfigurationForm, {ConfigToggle} from '../UI/ConfigurationForm'
 import Configuration from '../Configuration'
+import GlobalBackground from '../UI/GlobalBackground'
 
 class App extends React.Component {
     constructor (props) {
@@ -63,14 +64,27 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Header title="My Bookmarks">
-                    <SearchForm searchCallback={this.onSearch.bind(this)} submitCallback={this.onSearchSubmit.bind(this)} />
+                <GlobalBackground 
+                    config={ this.state.config } />
+                <Header
+                    title="My Bookmarks"
+                    config={ this.state.config } >
+                    <SearchForm 
+                    searchCallback={ this.onSearch.bind(this) }
+                    submitCallback={ this.onSearchSubmit.bind(this) } />
                     <ConfigToggle />
                 </Header>
                 <div className="uk-container uk-container-large">
-                    <Grid items={this.state.folders} tree={this.state.tree}/>
+                    <Grid 
+                        items={ this.state.folders }
+                        tree={ this.state.tree }
+                        config={ this.state.config } />
                 </div>
-                <ConfigurationForm id="configForm" title="Settings" config={this.state.config} onConfigSave={this.updateConfig.bind(this)}/>
+                <ConfigurationForm
+                    id="configForm"
+                    title="Settings"
+                    config={ this.state.config }
+                    onConfigSave={ this.updateConfig.bind(this) } />
             </div>
         )
     }

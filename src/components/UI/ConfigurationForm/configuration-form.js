@@ -1,7 +1,8 @@
 import React from 'react'
 import Modal from '../Modal'
 import Configuration, { fields } from '../../Configuration'
-import { InputText, Checkbox } from '../FormFields'
+import { InputText, Checkbox, Legend } from '../FormFields'
+import BackgroundConfig from './background-config'
 
 const getFieldsWithValues = (fields, config) => Object.keys(fields).reduce((fieldsArray, fieldKey) => {
         fieldsArray.push({
@@ -18,8 +19,7 @@ export default class ConfigurationForm extends Modal {
         this.config = new Configuration();
 
         this.state = {
-            fieldset: [],
-            changedData: {}
+            fieldset: []
         }
 
         this.config.get().then(data => this.setState({
@@ -34,12 +34,22 @@ export default class ConfigurationForm extends Modal {
             switch (field.type) {
                 case "checkbox" :
                     renderedFieldset.push(
-                       <Checkbox {...field} onChangeCallback={this.onFormChange.bind(this)} />
+                       <Checkbox {...field} onChangeCallback={ this.onFormChange.bind(this) } />
+                    )
+                    break;
+                case "legend" :
+                    renderedFieldset.push(
+                        <Legend {...field} />
+                    )
+                    break;
+                case "background_config" :
+                    renderedFieldset.push(
+                        <BackgroundConfig {...field} onChangeCallback={ this.onFormChange.bind(this) } />
                     )
                     break;
                 default: 
                     renderedFieldset.push(
-                        <InputText {...field} onChangeCallback={this.onFormChange.bind(this)}/>
+                        <InputText {...field} onChangeCallback={ this.onFormChange.bind(this) }/>
                     )
                     break;
             }
@@ -53,21 +63,11 @@ export default class ConfigurationForm extends Modal {
 
         updatedState[optionId] = (evt.target.type == 'checkbox') ? evt.target.checked : evt.target.value
 
-        this.setState({
-            changedData: updatedState
-        })
-    }
-
-    onFormSubmit(evt) {
-        evt.preventDefault();
-
-        this.config.set(this.state.changedData).then(() => {
+        this.config.set(updatedState).then(() => {
             if (this.props.onConfigSave) {
                 this.props.onConfigSave()
             }
         })
-
-        this.close();
     }
 
     render() {
@@ -77,11 +77,10 @@ export default class ConfigurationForm extends Modal {
             <div id={this.props.id} uk-modal>
                 <div className={['uk-modal-dialog uk-modal-body', additionalClassNames].join(' ')}>
                     <h2 className="uk-modal-title">{this.props.title}</h2>
-                    <form action="#" onSubmit={this.onFormSubmit.bind(this)}>
+                    <form action="#">
                         {this.getRenderedFieldset(this.state.fieldset)}
                         <p class="uk-text-right">
-                            <button type="submit" className="uk-button uk-button-primary uk-margin-right">Save</button>
-                            <button className="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                            <button className="uk-button uk-button-primary uk-modal-close" type="button">Close</button>
                         </p>
                     </form>
                 </div>

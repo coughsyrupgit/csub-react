@@ -6,9 +6,13 @@ export default class Storage {
     constructor(defaultData, chapter) {
         this.chapter = chapter;
 
-        this.data = chapter ? {
-            [chapter]: defaultData || defaults
-        } : defaultData || defaults
+        this.data = {}
+        
+        if (chapter) {
+            this.data[chapter] = defaultData || defaults
+        } else {
+            this.data = defaultData || defaults
+        }
 
         this.get(this.data).then(data => chapter ? (this.data[chapter] = data) : (this.data = data))
     }
@@ -24,12 +28,14 @@ export default class Storage {
             if (!data || !Object.keys(data).length) {
                 reject(new Error ('No data is provided to set'))
             }
-            data = this.chapter ? {
+            let prepared_data = this.chapter ? {
                 ...this.data,
-                [this.chapter]: data
-            } : data;
+                [this.chapter]: Object.assign({}, this.data[this.chapter], data)
+            } : Object.assign({}, this.data, data);
 
-            storage.sync.clear( () => storage.sync.set(data, result => resolve(result)))
+            this.data = prepared_data;
+
+            storage.sync.clear( () => storage.sync.set(prepared_data, result => resolve(result)))
         })
     }
 
