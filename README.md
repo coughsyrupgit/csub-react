@@ -1,4 +1,4 @@
-# CS useful Bookmarks
+# <img src="./public/logo_48.png" width="30" height="30">&nbsp;&nbsp;CS useful Bookmarks
 
 This project is a Google Chrome extension which shows user's bookmarks in a start tab as a bunch of cards.
 
