@@ -4,8 +4,12 @@ This project is a Google Chrome extension which shows user's bookmarks in a star
 
 Additional features:
 
-+ Search though the bookmarks and folders
++ Search bookmarks and folders
 + Remove bookmarks
++ During search if there is only one result press ENTER to browse website immediately
++ Configure appearence
+    + Create a unique 3-color gradient background
+    + Dark/light theme support
 
 ![Screenshot of CS Useful Bookmarks](./public/preview.png)
 
@@ -33,4 +37,3 @@ The extenstion will appear in the new Chrome tab.
 + Drag and drop folders to reorder
 + Drag and drop bookmarks to move between folders
 + <del>Search: open bookmark on submit, if there is only one result</del>
-
