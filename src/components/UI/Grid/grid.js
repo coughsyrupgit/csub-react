@@ -14,7 +14,7 @@ const Grid = ({items, tree, config}) => {
     })
 
     return (
-        <ul className="" data-uk-grid="masonry: true">{elems}</ul>
+        <ul className="uk-margin-medium-bottom" data-uk-grid="masonry: true">{elems}</ul>
     )
 }
 

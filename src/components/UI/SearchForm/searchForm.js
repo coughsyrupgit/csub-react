@@ -17,6 +17,14 @@ export default class SearchForm extends React.Component {
         }.bind(this))
     }
 
+    componentDidMount() {
+        this.searchInput.focus()
+    }
+
+    setInputRef(input) {
+        this.searchInput = input
+    }
+
     render() {
         return (
             <form className="uk-search uk-flex uk-flex-middle" onSubmit={this.props.submitCallback}>
@@ -24,7 +32,7 @@ export default class SearchForm extends React.Component {
                     <span data-uk-icon="search"></span>
                 </div>
                 <div className="uk-width-expand">
-                    <input className="uk-search-input uk-text-large" type="search" placeholder="Search..." value={this.state.query} onChange={this.onInputChange.bind(this)} />
+                    <input className="uk-search-input uk-text-large" type="search" placeholder="Search..." value={this.state.query} onChange={this.onInputChange.bind(this)} ref={this.setInputRef.bind(this)}/>
                 </div>
             </form>
         )

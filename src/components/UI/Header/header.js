@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Header = ({title, children, config}) => {
-    let container_class_names = `${(config.dark_mode ? 'uk-background-secondary' : 'uk-background-default')} uk-margin-large-bottom`,
+    let container_class_names = `${(config.dark_mode ? 'uk-background-secondary' : 'uk-background-default')} uk-margin-medium-bottom`,
         title_class_names = `uk-heading-bullet uk-text-large ${(config.dark_mode ? 'uk-light' : '')}`
     
     return (
