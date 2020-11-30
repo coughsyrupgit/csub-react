@@ -1,7 +1,12 @@
 {
   "name": "CS Useful Bookmarks",
   "description": "CS Useful Bookmarks React Version",
-  "version": "0.2.0",
+  "version" : "0.3.0",
+  "icons": {
+      "16": "logo_16.png",
+      "48": "logo_48.png",
+      "128": "logo_128.png"
+  },
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
