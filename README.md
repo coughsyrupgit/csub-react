@@ -7,6 +7,7 @@ Additional features:
 + Search bookmarks and folders
 + Remove bookmarks
 + During search if there is only one result press ENTER to browse website immediately
++ Optionally enable Chrome applications panel
 + Configure appearence
     + Create a unique 3-color gradient background
     + Dark/light theme support

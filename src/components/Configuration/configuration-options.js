@@ -18,6 +18,16 @@ const config_options = {
         type            : 'background_config',
         defaultValue    : ['#f64f59', '#c471ed','#12c2e9'],
         label           : 'First color'
+    },
+    area_three_title : {
+        type            : 'legend',
+        defaultValue    : null,
+        label           : 'Tools'
+    },
+    show_apps: {
+        type            : 'checkbox',
+        defaultValue    : false,
+        label           : 'Show Chrome applications'
     }
 }
 

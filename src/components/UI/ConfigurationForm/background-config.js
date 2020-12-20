@@ -41,7 +41,7 @@ export default class BackgroundConfig extends AbstractField {
 
     render() {
         return (
-            <div className="uk-flex uk-flex-left">
+            <div className="uk-flex uk-flex-left uk-margin-bottom">
                 {this.getRenderedPickers(this.state.value)}
             </div>
         )

@@ -1,7 +1,7 @@
 {
   "name": "CS Useful Bookmarks",
   "description": "CS Useful Bookmarks React Version",
-  "version" : "0.3.0",
+  "version" : "0.3.1",
   "icons": {
       "16": "logo_16.png",
       "48": "logo_48.png",
@@ -15,7 +15,8 @@
     "bookmarks",
     "storage",
     "unlimitedStorage",
-    "chrome://favicon/"
+    "chrome://favicon/",
+    "management"
   ],
   "content_security_policy": "script-src 'self'; object-src 'self'",
   "manifest_version": 2
