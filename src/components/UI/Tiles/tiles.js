@@ -9,9 +9,9 @@ const Tiles = (({items, config}) => {
             </a>
         </li>
     ))
-    return (
+    return elems && elems.length ? (
         <ul className="uk-flex uk-flex-center uk-text-center uk-padding-remove reset-list uk-margin-medium-bottom">{elems}</ul>
-    )
+    ) : null
 })
 
 export default Tiles
