@@ -20,6 +20,7 @@
 
 .link__container {
     position: relative;
+    padding-right: 50px;
 }
 
 .link__container:hover .link__actions {

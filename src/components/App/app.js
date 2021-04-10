@@ -11,6 +11,7 @@ import Tree from '../Tree'
 import ConfigurationForm, {ConfigToggle} from '../UI/ConfigurationForm'
 import Configuration from '../Configuration'
 import GlobalBackground from '../UI/GlobalBackground'
+import ChromeApps from '../ChromeApps';
 
 class App extends React.Component {
     constructor (props) {
@@ -24,7 +25,8 @@ class App extends React.Component {
         this.state = {
             tree: tree,
             folders: [],
-            config: {}
+            config: {},
+            apps: []
         }
 
         tree.update()
@@ -75,6 +77,9 @@ class App extends React.Component {
                     <ConfigToggle />
                 </Header>
                 <div className="uk-container uk-container-large">
+                    <ChromeApps
+                        items={ this.state.apps }
+                        config={ this.state.config } />
                     <Grid 
                         items={ this.state.folders }
                         tree={ this.state.tree }
