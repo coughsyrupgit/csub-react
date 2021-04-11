@@ -21,6 +21,12 @@ const Card = ({links, title, tree, config}) => {
             <ul className="uk-list">
                 {linksItems}
             </ul>
+            <button
+                type="button"
+                className="uk-icon-link uk-position-top-right uk-padding-small"
+                uk-icon="move"
+                data-role="drag-handle">
+            </button>
         </div>
     )
 }
