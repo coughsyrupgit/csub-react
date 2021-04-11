@@ -12,6 +12,7 @@ import ConfigurationForm, {ConfigToggle} from '../UI/ConfigurationForm'
 import Configuration from '../Configuration'
 import GlobalBackground from '../UI/GlobalBackground'
 import ChromeApps from '../ChromeApps';
+import * as constants from './constants';
 
 class App extends React.Component {
     constructor (props) {
@@ -83,7 +84,8 @@ class App extends React.Component {
                     <Grid 
                         items={ this.state.folders }
                         tree={ this.state.tree }
-                        config={ this.state.config } />
+                        config={ this.state.config }
+                        orderConfigName={ constants.CONFIG_NAME_FOLDERS_ORDER } />
                 </div>
                 <ConfigurationForm
                     id="configForm"
