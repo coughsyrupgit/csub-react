@@ -1,0 +1,3 @@
+.collapsed li:nth-of-type(n+6) {
+    @apply hidden;
+}
