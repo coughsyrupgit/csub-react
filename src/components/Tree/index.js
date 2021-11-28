@@ -1,1 +1,1 @@
-export { default } from './tree'
+export { default as useTree } from "./useTree";

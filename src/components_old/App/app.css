@@ -1,0 +1,28 @@
+body, html {
+    height: 100%;
+}
+
+.fade {
+    transition: opacity .2s, visibility .2s, transform .2s;
+}
+
+.fade--hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20%);
+    position: absolute;
+}
+
+.uk-card-default {
+    border-radius: 8px;
+    /*background: linear-gradient(-45deg, #f8f8f8, #efefef);*/
+    box-shadow: 1px 1px 5px rgba(20,20, 20, .3);
+}
+
+.uk-search-input {
+    background: transparent;
+}
+
+.reset-list {
+    list-style: none;
+}
