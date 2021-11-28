@@ -8,8 +8,8 @@ export default function Card(props) {
     } = props;
 
     return (
-        <div>
-            <h2>
+        <div className="rounded bg-white bg-opacity-40 p-4">
+            <h2 className="text-lg">
                 { title }
             </h2>
             <ul>
